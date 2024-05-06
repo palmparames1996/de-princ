@@ -39,6 +39,12 @@ forword-mage:
 	export AWS_PROFILE=parames_root
 	kubectl port-forward --namespace default svc/mage-ai-service 6789:6789
 
+ci-up:
+	cd ./2.cicd && docker-compose up -d
+
+ci-down:
+	cd ./2.cicd && docker-compose down
+
 ci-local-start:
 	cd ./2.cicd && docker build -t myjenkins-blueocean:latest .
 	docker network create jenkins
