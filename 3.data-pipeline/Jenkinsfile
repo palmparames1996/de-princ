@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        AWS_DEFAULT_REGION = credentials('AWS_DEFAULT_REGION')
+        ECR_HOST = credentials('ECR_HOST')
+        ECR_REPO = credentials('ECR_REPO')
+    }
+
+    stages {
+        stage('ECR login') {
+            steps {
+                sh 'aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_HOST'
+            }
+        }
+        stage('Build image') {
+            steps {
+                sh 'docker build -f ./3.data-pipeline/dockerfile.mage -t $ECR_REPO .'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Test'
+            }
+        }
+        stage('Tag image') {
+            steps {
+                sh 'docker tag $ECR_REPO:latest $ECR_HOST/$ECR_REPO:latest'
+            }
+        }
+        stage('Push image') {
+            steps {
+                sh 'docker push $ECR_HOST/$ECR_REPO:latest'
+            }
+        }
+        stage('Deployment') {
+            steps {
+                echo 'Deployment kubectl apply -f deployment.yml';
+            }
+        }
+    }
+}
