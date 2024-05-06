@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'public.ecr.aws/docker/library/python:slim'
+            label 'ecr-image'
+            args  '-v /tmp:/tmp'
+        }
+    }
 
     environment {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
