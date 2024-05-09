@@ -20,15 +20,17 @@ pipeline {
                 sh 'docker build -f ./3.data-pipeline/dockerfile.mage -t $ECR_REPO .'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'docker ps'
-                echo 'Test'
-            }
-        }
         stage('Tag image') {
             steps {
                 sh 'docker tag $ECR_REPO:latest $ECR_HOST/$ECR_REPO:latest'
+                sh 'docker images'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'docker run -p 6789:6789 $ECR_REPO:latest'
+                sh 'curl --request GET --url "http://localhost:6789/api/pipelines"'
+                sh 'docker ps'
             }
         }
         stage('Push image') {
