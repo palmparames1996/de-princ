@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'dokcker ps'
+                sh 'docker ps'
                 echo 'Test'
             }
         }
