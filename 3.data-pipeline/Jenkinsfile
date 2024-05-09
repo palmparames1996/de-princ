@@ -29,8 +29,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'docker run -p 6789:6789 -d $ECR_REPO:latest'
-                sh 'curl --request GET --url "http://$ECR_REPO:6789/api/pipelines"'
                 sh 'docker ps'
+                sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=$ECR_REPO:latest --format="{{.ID}}"))'
             }
         }
         stage('Push image') {
