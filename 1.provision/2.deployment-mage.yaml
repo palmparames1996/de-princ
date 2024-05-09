@@ -19,7 +19,7 @@ spec:
         ports:
         - containerPort: 6789
         envFrom:
-          - secretRef:
+          - configMapRef:
               name: secret-mage
         imagePullPolicy: Always
       restartPolicy: Always
