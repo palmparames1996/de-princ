@@ -1,3 +1,4 @@
 .env
 mage_data
 jenkins
+*secret*

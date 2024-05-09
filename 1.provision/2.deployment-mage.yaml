@@ -15,9 +15,12 @@ spec:
     spec:
       containers:
       - name: mage-ai
-        image: mageai/mageai:0.9.68
+        image: 863868025110.dkr.ecr.ap-southeast-1.amazonaws.com/parames-mage:latest # mageai/mageai:0.9.68
         ports:
         - containerPort: 6789
+        envFrom:
+          - secretRef:
+              name: secret-mage
         imagePullPolicy: Always
       restartPolicy: Always
 ---
