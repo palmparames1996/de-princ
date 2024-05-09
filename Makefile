@@ -40,7 +40,7 @@ forword-mage:
 	kubectl port-forward --namespace default svc/mage-ai-service 6789:6789
 
 ci-up:
-	cd ./2.cicd && docker-compose up -d
+	cd ./2.cicd && docker-compose up -d --build
 
 ci-down:
 	cd ./2.cicd && docker-compose down

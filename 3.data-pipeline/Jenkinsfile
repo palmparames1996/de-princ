@@ -12,7 +12,6 @@ pipeline {
     stages {
         stage('ECR login') {
             steps {
-                sh '/usr/local/bin/aws s3 ls'
                 sh 'aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_HOST'
             }
         }
@@ -23,6 +22,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'dokcker ps'
                 echo 'Test'
             }
         }
