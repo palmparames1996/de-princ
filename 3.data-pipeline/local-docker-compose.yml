@@ -6,7 +6,7 @@ services:
       dockerfile: ./dockerfile.mage
     ports:
       - 6789:6789
-    volumes:
-      - ./mage-ai:/home/src
+    # volumes:
+    #   - ./mage-ai:/home/src
     env_file:
       - .env

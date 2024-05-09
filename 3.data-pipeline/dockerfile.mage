@@ -1,1 +1,3 @@
 FROM mageai/mageai:0.9.60
+
+COPY ./mage-ai /home/src

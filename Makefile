@@ -24,6 +24,10 @@ local-stop:
 deploy-mage:
 	kubectl apply -f ./1.provision
 
+forword-mage:
+	export AWS_PROFILE=parames_root
+	kubectl port-forward --namespace default svc/mage-ai-service 6789:6789
+
 delete-mage:
 	kubectl delete -f ./1.provision
 
