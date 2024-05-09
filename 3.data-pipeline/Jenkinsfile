@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build image') {
             steps {
-                sh 'docker build -f ./3.data-pipeline/dockerfile.mage -t $ECR_REPO .'
+                sh 'cd 3.data-pipeline && docker build -f ./dockerfile.mage -t $ECR_REPO .'
             }
         }
         stage('Tag image') {
