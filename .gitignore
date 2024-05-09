@@ -1,4 +1,8 @@
 .env
-mage_data
+*.db
+client_secrets.json
 jenkins
 *secret*
+.cache
+.operation_history
+.logs
