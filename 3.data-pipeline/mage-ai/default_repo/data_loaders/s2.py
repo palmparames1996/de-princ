@@ -29,14 +29,14 @@ def load_data(*args, **kwargs):
     yearMonth_target = datetime.strftime(target_date, '%Y-%m')
     # yearMonth_target = '1996-09'
     yearMonth_list = [
-        datetime.strftime(target_date - relativedelta(month=2), '%Y-%m') # '1996-07'
-        , datetime.strftime(target_date - relativedelta(month=1), '%Y-%m') # '1996-08'
+        datetime.strftime(target_date - relativedelta(months=2), '%Y-%m') # '1996-07'
+        , datetime.strftime(target_date - relativedelta(months=1), '%Y-%m') # '1996-08'
         ,  datetime.strftime(target_date, '%Y-%m') # '1996-09'
     ]
 
     filename = "{}{}-{}".format(
         datetime.strftime(target_date, '%Y')
-        , datetime.strftime(target_date - relativedelta(month=2), '%b')
+        , datetime.strftime(target_date - relativedelta(months=2), '%b')
         , datetime.strftime(target_date, '%b')
     ) + '.xlsx'
     pathfile = '{}'.format(filename)

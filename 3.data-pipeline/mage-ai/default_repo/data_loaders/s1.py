@@ -21,7 +21,7 @@ def load_data(*args, **kwargs):
     execution_date = datetime.strptime(kwargs.get('custom_date'),'%Y-%m-%d') if kwargs.get('custom_date') else kwargs.get('execution_date') # 1997-01-01
     target_date = execution_date - relativedelta(days=1)
     yearMonth_target = datetime.strftime(target_date, '%Y-%m')
-    yearMonth_previous = datetime.strftime(target_date - relativedelta(month=1), '%Y-%m')
+    yearMonth_previous = datetime.strftime(target_date - relativedelta(months=1), '%Y-%m')
 
     s1_sql = f"""WITH transaction_data AS (
     SELECT o.OrderDate as date, od.'OrderID', od.ProductID, od.UnitPrice * od.Quantity as salesAmount
